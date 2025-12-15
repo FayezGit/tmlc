@@ -13,9 +13,12 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
-    "next": "16.0.8",
+    "@reduxjs/toolkit": "^2.11.2",
+    "next": "^16.0.10",
     "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "react-cookie": "^8.0.1",
+    "react-dom": "19.2.1",
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "eslint": "^9",

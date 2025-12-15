@@ -1,29 +1,35 @@
 import Head from "next/head";
+import { useState, useEffect } from "react";
+
 import MyAppBar from "@/components/common/MyAppBar";
+import { lightTheme, darkTheme } from "@/styles/mui/theme";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+
+import { useDispatch, useSelector } from "react-redux";
+import { selectTheme, getActiveTheme } from "@/redux/reducers/themeReducer";
 
 export default function Blog() {
-  const movies = [
-    {
-      name: "Avengers",
-      img: "https://tse4.mm.bing.net/th/id/OIP.fb0xCNA1cNphjkoYkr8AdgHaEK?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
-      desc: "Directed by Joss Whedon",
-    },
-    {
-      name: "Terminator",
-      img: "https://tse2.mm.bing.net/th/id/OIP.giktN2PT0t2BcbsAIIebpQHaLH?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
-      desc: "Directed by James Cameroon",
-    },
-  ];
+  // const [currentTheme, setCurrentTheme] = useState("light");
+  const dispatch = useDispatch();
+  const currentTheme = useSelector(selectTheme).activeTheme;
+
+  useEffect(() => {
+    dispatch(getActiveTheme());
+  }, []);
+
   return (
     <>
-      <Head>
-        <title>Blog | The Movie Lovers Club</title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <MyAppBar />
-      <div>Blog</div>
+      <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
+        <CssBaseline />
+        <Head>
+          <title>Blog | The Movie Lovers Club</title>
+          <meta name="description" content="" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <MyAppBar />
+        <div>Blog</div>
+      </ThemeProvider>
     </>
   );
 }

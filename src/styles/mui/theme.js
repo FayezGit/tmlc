@@ -1,23 +1,26 @@
-import { createTheme } from "@mui/material/styles";
-// Color Variables
+const { createTheme, responsiveFontSizes } = require("@mui/material/styles");
+
+// Colour Variables
 const backgroundColour = "#F3F8F2";
 const primaryColour = "#FCB07E";
 const textColour = "#242423";
-const secondaryColour = "#8895C9";
+const secondaryColour = "#8B95C9";
 const highlightColour = "#EC058E";
 
+// Dark Theme Colour Variables
 const backgroundColourDark = "#242423";
-const primaryColourDark = "#885432ff";
+const primaryColourDark = "#83502eff";
 const textColourDark = "#F3F8F2";
 const secondaryColourDark = "#3c4469ff";
 const highlightColourDark = "#EC058E";
 
-//Light Theme
-let theme = createTheme({
+// Theme
+let lightTheme = createTheme({
   palette: {
     mode: "light",
     background: {
       default: backgroundColour,
+      paper: backgroundColour,
     },
     primary: {
       main: primaryColour,
@@ -32,12 +35,33 @@ let theme = createTheme({
       main: textColour,
     },
     error: {
-      main: "#D80037",
+      main: "#D80027",
+    },
+  },
+  typography: {
+    h1: {
+      fontFamily: "Montserrat",
+    },
+    fontFamily: "Montserrat",
+    body1: {
+      fontFamily: "Raleway",
+    },
+    body2: {
+      fontFamily: "Raleway",
+    },
+    subtitle1: {
+      fontFamily: "Raleway",
+    },
+    subtitle2: {
+      fontFamily: "Raleway",
+    },
+    button: {
+      fontWeight: 500,
     },
   },
 });
 
-//Dark Theme
+// Dark Theme
 let darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -57,10 +81,33 @@ let darkTheme = createTheme({
       main: textColourDark,
     },
     error: {
-      main: "#D80037",
+      main: "#D80027",
+    },
+  },
+  typography: {
+    h1: {
+      fontFamily: "Montserrat",
+    },
+    fontFamily: "Montserrat",
+    body1: {
+      fontFamily: "Raleway",
+    },
+    body2: {
+      fontFamily: "Raleway",
+    },
+    subtitle1: {
+      fontFamily: "Raleway",
+    },
+    subtitle2: {
+      fontFamily: "Raleway",
+    },
+    button: {
+      fontWeight: 500,
     },
   },
 });
 
+lightTheme = responsiveFontSizes(lightTheme);
+darkTheme = responsiveFontSizes(darkTheme);
 
-export { theme, darkTheme};
+export { lightTheme, darkTheme };
