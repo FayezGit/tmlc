@@ -1,7 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import "./model/Movie.js";
+import "./model/User.js"
 import movieRoutes from "./routes/movieRoutes.js";
+import userRoutes from "./routes/userRoutes.js"
 import { config } from "dotenv";
 
 config();
@@ -21,6 +23,7 @@ mongoose
   });
 
 movieRoutes(app);
+userRoutes(app);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

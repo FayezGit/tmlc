@@ -17,7 +17,7 @@ export default (app) => {
 
       const response = await Movie.create(movieFields);
 
-      res.status(201).json({ message: "Movies added successfully!", response });
+      res.status(201).json({ message: "Movie added successfully!", response });
     } catch (err) {
       res.status(500).json({ message: err.message });
     }
