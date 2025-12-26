@@ -4,6 +4,7 @@ import "./model/Movie.js";
 import "./model/User.js"
 import movieRoutes from "./routes/movieRoutes.js";
 import userRoutes from "./routes/userRoutes.js"
+import authRoutes from "./routes/authRoutes.js";
 import { config } from "dotenv";
 
 config();
@@ -24,6 +25,7 @@ mongoose
 
 movieRoutes(app);
 userRoutes(app);
+authRoutes(app);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

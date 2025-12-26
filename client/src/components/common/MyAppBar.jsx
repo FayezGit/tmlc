@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Cookies } from "react-cookie";
 
 //MUI Imports
 import AppBar from "@mui/material/AppBar";
@@ -21,7 +22,21 @@ import { selectTheme, toggleTheme } from "@/redux/reducers/themeReducer";
 // import { theme, darkTheme } from "@/styles/mui/theme";
 // import { CssBaseline, ThemeProvider } from "@mui/material";
 
+const cookies = new Cookies();
+
 export default function MyAppBar() {
+  const [token, setToken] = useState();
+
+  useEffect(() => {
+    const token = cookies.get("token");
+    setToken(token);
+  }, []);
+
+  const handleLogout = () => {
+    cookies.remove("token");
+    window.location.href = "/login";
+  };
+
   const dispatch = useDispatch();
   const currentTheme = useSelector(selectTheme).activeTheme;
   const theme = useTheme();
@@ -62,7 +77,15 @@ export default function MyAppBar() {
             <Link href="/blog">
               <Button sx={{ color: theme.palette.icon.main }}>Blog</Button>
             </Link>
-            <Button color="inherit">Login</Button>
+            {token ? (
+              <Button color="inherit" onClick={handleLogout}>
+                Log Out
+              </Button>
+            ) : (
+              <Button color="inherit" href="/login">
+                Login
+              </Button>
+            )}{" "}
           </Toolbar>
         </AppBar>
       </Box>
